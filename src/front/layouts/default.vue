@@ -1,20 +1,12 @@
 <template>
   <div>
     <b-navbar>
-      <template slot="brand">
-        <b-navbar-item tag="router-link" :to="{ path: '/' }">
-          <img
-            src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-            alt="Lightweight UI components for Vue.js based on Bulma"
-          />
-        </b-navbar-item>
-      </template>
       <template slot="start">
         <b-navbar-item v-for="(item, key) in items" :key="key" :href="item.to">
           <b-icon :icon="item.icon"> </b-icon>
           <span>{{ item.title }}</span>
         </b-navbar-item>
-        <b-navbar-dropdown label="SNS">
+        <b-navbar-dropdown label="SNS" animation="slide-next">
           <b-navbar-item
             v-for="(s, index) in sns"
             :key="index"
@@ -36,8 +28,11 @@
 <script>
 export default {
   data() {
-    return {
-      sns: [
+    return {}
+  },
+  computed: {
+    sns() {
+      return [
         {
           title: 'github',
           icon: 'github-face',
@@ -56,8 +51,10 @@ export default {
           pack: 'mdi',
           to: 'https://www.instagram.com/kuriiiii13'
         }
-      ],
-      items: [
+      ]
+    },
+    items() {
+      return [
         {
           title: 'Home',
           icon: 'home',
