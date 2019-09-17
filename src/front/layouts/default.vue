@@ -1,24 +1,26 @@
 <template>
   <div>
-    <header>
-      <div class="menu">
-        <div class="bar-1"></div>
-        <div class="bar-2"></div>
-        <div class="bar-3"></div>
-      </div>
-      <div class="menu-detail" :class="{ open: isOpen }">
-        <div
-          v-for="(item, key) in items"
-          :key="key"
-          :href="item.to"
-          :target="item.blank ? '_blank' : false"
-        >
-          <b-icon :icon="item.icon"> </b-icon>
-          <span>{{ item.title }}</span>
-        </div>
-      </div>
-    </header>
-    <div class="container">
+    <div class="menu">
+      <a
+        v-for="(item, key) in items"
+        :key="key"
+        class="menu-detail"
+        :href="item.to.value"
+        :target="item.blank ? '_blank' : false"
+      >
+        <span>{{ item.title }}</span>
+      </a>
+      <a
+        v-for="(item, key) in sns"
+        :key="key"
+        class="menu-detail-sns"
+        :href="item.to.value"
+        :target="item.blank ? '_blank' : false"
+      >
+        <b-icon :icon="item.icon"> </b-icon>
+      </a>
+    </div>
+    <div class="body-container">
       <nuxt />
     </div>
   </div>
@@ -31,40 +33,8 @@ export default {
     }
   },
   computed: {
-    items() {
+    sns() {
       return [
-        {
-          title: 'Home',
-          icon: 'home',
-          to: {
-            value: '/',
-            blank: false
-          }
-        },
-        {
-          title: 'Works',
-          icon: 'console',
-          to: {
-            value: 'works',
-            blank: false
-          }
-        },
-        {
-          title: 'Blog',
-          icon: 'desktop-mac',
-          to: {
-            value: 'https://ryomak.info',
-            blank: true
-          }
-        },
-        {
-          title: 'Contact',
-          icon: 'email',
-          to: {
-            value: 'contact',
-            blank: false
-          }
-        },
         {
           title: 'github',
           icon: 'github-face',
@@ -90,17 +60,65 @@ export default {
           }
         }
       ]
+    },
+    items() {
+      return [
+        {
+          title: 'Home',
+          icon: 'home',
+          to: {
+            value: '/',
+            blank: false
+          }
+        },
+        {
+          title: 'Works',
+          icon: 'console',
+          to: {
+            value: '/works',
+            blank: false
+          }
+        },
+        {
+          title: 'Blog',
+          icon: 'desktop-mac',
+          to: {
+            value: 'https://ryomak.info',
+            blank: true
+          }
+        },
+        {
+          title: 'Contact',
+          icon: 'email',
+          to: {
+            value: '/contact',
+            blank: false
+          }
+        }
+      ]
     }
   }
 }
 </script>
 <style lang="scss">
-.menu-detail {
+.menu {
   position: fixed;
-  background: rgba(#eee, 0.7);
+  display: table;
+  background: rgba(#fff, 0.7);
   padding: 1rem;
+  margin: 2rem;
+  font-size: 1rem;
+  right: 0;
 }
-.open {
-  height: 100vh;
+
+.menu-detail {
+  position: relative;
+  display: block;
+  letter-spacing: 2px;
+}
+
+.menu-detail-sns {
+  position: relative;
+  letter-spacing: 2px;
 }
 </style>

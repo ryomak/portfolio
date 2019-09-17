@@ -11,3 +11,8 @@ export default {
   name: 'Index'
 }
 </script>
+<style lang="scss" scoped>
+.section {
+  background-color: #e3e;
+}
+</style>
